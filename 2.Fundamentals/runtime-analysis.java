@@ -7,11 +7,11 @@ while n > 0:
     n = n // 2
 
 
-# Block (b) // O(2^n logn) NOT SURE ABOUT THIS ONE
+# Block (b) // O(nlogn) NOT SURE ABOUT THIS ONE
 sum = 0
 i = 1
 while i < N: // log n
-    for j in range(0, i): // 2^n
+    for j in range(0, i): // O(N)
         sum += 1
     i = i * 2
 
