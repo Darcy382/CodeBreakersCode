@@ -29,3 +29,31 @@ class Solution:
 
         return head
 
+# Second attempt, Two pass solution time O(N), space O(1)
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        # Two pass solution
+        # Find length of list
+        if head is None:
+            return None
+        current = head
+        length = 0
+        while current:
+            length += 1
+            current = current.next
+        # Find the removal index
+        rem_inx = length - n
+
+        # edge case for removing head
+        if rem_inx == 0:
+            return head.next
+
+        # iterate to the node prior to the removal node
+        current = head
+        for i in range(rem_inx - 1):
+            current = current.next
+
+        # Remove the nth node
+        current.next = current.next.next
+
+        return head

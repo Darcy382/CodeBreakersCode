@@ -3,7 +3,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-# First Attempt  O(n) time NOT SURE ABT TIME, O(1) space
+# First Attempt  O(n) time and  O(1) space
 def hasCycle(self, head: ListNode) -> bool:
     if head:
         slow = head.next
@@ -25,7 +25,7 @@ def hasCycle(self, head: ListNode) -> bool:
             else:
                 return False
 
-# Second attempt: time = ? space = O(1)
+# Second attempt: time = O(N) space = O(1)
 def hasCycle(self, head: ListNode) -> bool:
     try:
         slow = head.next

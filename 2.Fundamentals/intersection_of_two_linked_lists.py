@@ -4,7 +4,7 @@ class ListNode:
         self.next = None
 
 # First Attempt
-def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+def getIntersectionNode1(self, headA: ListNode, headB: ListNode) -> ListNode:
     currentA = headA
     currentB = headB
     id_set = set()
@@ -23,6 +23,25 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
                 return currentB
             currentB = currentB.next
     return None
+
+
+# Second attempt time O(n), space O(1)
+def getIntersectionNode2(self, headA: ListNode, headB: ListNode) -> ListNode:
+        p1 = headA
+        p2 = headB
+
+        while (p1 or p2) and p1 is not p2:
+            if p1:
+                p1 = p1.next
+            else:
+                p1 = headB
+            if p2:
+                p2 = p2.next
+            else:
+                p2 = headA
+
+        return p1
+
 
 
 
