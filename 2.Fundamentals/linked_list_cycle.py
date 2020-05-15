@@ -26,7 +26,7 @@ def hasCycle(self, head: ListNode) -> bool:
                 return False
 
 # Second attempt: time = O(N) space = O(1)
-def hasCycle(self, head: ListNode) -> bool:
+def hasCycle1(self, head: ListNode) -> bool:
     try:
         slow = head.next
         fast = head.next.next
@@ -36,3 +36,16 @@ def hasCycle(self, head: ListNode) -> bool:
         return True
     except:
         return False
+
+# Third attempt: time = O(N) space = O(1)
+def hasCycle3(self, head: ListNode) -> bool:
+    try:
+        slow = head.next
+        fast = head.next.next
+        while slow is not fast:
+            slow = slow.next
+            fast = fast.next.next
+        return True
+    except AttributeError:
+        return False
+
