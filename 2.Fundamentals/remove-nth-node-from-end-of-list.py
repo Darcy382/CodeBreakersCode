@@ -30,7 +30,7 @@ class Solution:
         return head
 
 # Second attempt, Two pass solution time O(N), space O(1)
-class Solution:
+class Solution2:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         # Two pass solution
         # Find length of list
@@ -55,5 +55,26 @@ class Solution:
 
         # Remove the nth node
         current.next = current.next.next
+
+        return head
+
+# Third attempt, one pass solution
+class soluiton3:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        slow = head
+        fast = head
+
+        for i in range(n):
+            if fast:
+                fast = fast.next
+
+        while fast and fast.next:
+            fast = fast.next
+            slow = slow.next
+
+        if fast is None:
+            return head.next
+
+        slow.next = slow.next.next
 
         return head

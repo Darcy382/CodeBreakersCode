@@ -18,7 +18,7 @@ def isPalindrome(self, head: ListNode) -> bool:
             return False
     return True
 
-# Second attempt, O(N) time, O(1) space
+# Second attempt and Third attempt, O(N) time, O(1) space
 def isPalindrome2(self, head: ListNode) -> bool:
     # Get len of list
     cur = head

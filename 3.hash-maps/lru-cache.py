@@ -1,4 +1,4 @@
-# First attempt, O(1) time and space
+# First attempt and second attempt, O(1) time and space
 class Node:
     def __init__(self, key, val):
         self.key = key
