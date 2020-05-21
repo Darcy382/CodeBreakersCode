@@ -13,6 +13,7 @@ class Node:
         self.next = None
         return self
 
+    # Make a set method for value
 
 class doublyList:
     def __init__(self):
@@ -45,14 +46,14 @@ class LRUCache:
             node = self.hash_table[key]
             node.remove()
             self.deque.insertFront(node)
-            return node.val
+            return node.val # Use a getter method
         else:
             return -1
 
     def put(self, key: int, value: int) -> None:
         if key in self.hash_table:
             node = self.hash_table[key]
-            node.val = value
+            node.val = value # Use a set method 
             node.remove()
             self.deque.insertFront(node)
         else:

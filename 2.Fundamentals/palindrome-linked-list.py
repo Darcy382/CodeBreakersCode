@@ -53,5 +53,39 @@ def isPalindrome2(self, head: ListNode) -> bool:
 
     return True
 
+# Third attempt
+def isPalindrome3(head: ListNode) -> bool:
+    if head is None or head.next is None:
+        return True
+    # Use one pass
+    # Reverse the first half of the list
+    cur = head
+    fast = head
+    prev = None
 
+    while fast is not None and fast.next is not None:
+        fast = fast.next.next
+        next_node = cur.next
+        cur.next = prev
+        cur = next_node
 
+    # Compare the first and second lists
+    p1 = prev
+    p2 = cur
+    if fast:
+        p2 = p2.next
+
+    while p1 and p2:
+        print(p1.val)
+        print(p2.val)
+        if p1.val != p2.val:
+            return False
+        p1 = p1.next
+        p2 = p2.next
+
+    return True
+
+node1 = ListNode(1)
+node2 = ListNode(2)
+node1.next = node2
+print(isPalindrome3(node1))
