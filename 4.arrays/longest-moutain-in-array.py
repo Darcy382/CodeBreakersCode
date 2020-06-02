@@ -37,4 +37,23 @@ def longestMountain1(self, A: list) -> int:
     else:
         return 0
 
+
 # Try using two while loops next time
+def longestMountain2(self, A: List[int]) -> int:
+    longest = 0
+    base = end = 0
+    while base < len(A) - 1:
+        if A[end + 1] > A[end]:
+            while end + 1 < len(A) and A[end + 1] > A[end]:
+                end += 1
+            if end + 1 < len(A) and A[end + 1] < A[end]:
+                while end + 1 < len(A) and A[end + 1] < A[end]:
+                    end += 1
+                longest = max(longest, end - base + 1)
+            else:
+                # Leveled off
+                end += 1
+        else:
+            end += 1
+        base = end
+    return longest

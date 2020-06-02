@@ -1,4 +1,4 @@
-# First attempt O(N) time and O(1) space
+# First and second attempt O(N) time and O(1) space
 def canJump(self, nums) -> bool:
     max_idx = 0
     for idx, num in enumerate(nums):
@@ -8,4 +8,4 @@ def canJump(self, nums) -> bool:
             max_idx = max(max_idx, idx + num)
     return True
 
-# Second attempt, try going backwards
+# Third attempt, try going backwards
