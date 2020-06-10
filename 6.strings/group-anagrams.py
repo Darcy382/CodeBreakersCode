@@ -13,3 +13,18 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
     return sorted_strs.values()
 
 # try to do with O(Nm) runtime next time
+
+def groupAnagrams2(self, strs: List[str]) -> List[List[str]]:
+
+    char_freqs = defaultdict(list)
+
+    for word in strs: O(N)
+    freq = [0] * 26
+    for char in word: O(M)
+    freq[ord(char) - ord('a')] += 1
+
+    freq = tuple(freq)
+    char_freqs[freq].append(word)
+
+
+    return char_freqs.values()

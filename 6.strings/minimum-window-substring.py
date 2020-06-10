@@ -1,58 +1,34 @@
-def minWindow(s: str, t: str) -> str:
-    fufilled = {}
-    required = {}
-    shortest = (-1, float("inf"), float("inf"))
-
-    for char in t:
-        if char in required:
-            required[char] += 1
-        else:
-            required[char] = 1
-
-    original_letters = required.copy()
-
-    l = r = 0
-    while r < len(s):
-        print(l, r)
-        print(fufilled)
-        print(required)
-        if s[r] in original_letters:
-            if s[r] in fufilled:
-                fufilled[s[r]] += 1
-            else:
-                fufilled[s[r]] = 1
-
-            if s[r] in required:
-                if required[s[r]] > 1:
-                    required[s[r]] -= 1
-                else:
-                    del required[s[r]]
-
-        while l < r and len(required) == 0:
-            print(l, r)
-            print(l, r)
-            print(fufilled)
-            print(required)
-            if (r - l + 1) < shortest[2]:
-                shortest = (l, r, r - l + 1)
-
-            if s[l] in fufilled:
-                if fufilled[s[l]] > 1:
-                    fufilled[s[l]] -= 1
-                else:
-                    del fufilled[s[l]]
-
-                if s[l] in required:
-                    if required[s[l]] < original_letters[s[l]]:
-                        required[s[l]] += 1
-                else:
-                    required[s[l]] = 1
-            l += 1
-        r += 1
-    return shortest
+from collections import defaultdict, Counter
 
 
-                  l
-                        r
-print(minWindow("ADOBECODEBANC","ABC"))
-                 01234567890123
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if t == "":
+            return ""
+
+        required = Counter(t)
+        current = defaultdict(int)
+        satisfied = 0
+        shortest = (-1, float("inf"), float("inf"))
+        N = len(required)
+        l = r = 0
+        while r < len(s):
+            char = s[r]
+            if char in required:
+                current[char] += 1
+                if current[char] == required[char]:
+                    satisfied += 1
+            while satisfied == N and l <= r:
+                shortest = min(shortest, (l, r, r - l + 1), key=lambda x: x[2])
+                char = s[l]
+                if char in required:
+                    current[char] -= 1
+                    if current[char] < required[char]:
+                        satisfied -= 1
+                l += 1
+            r += 1
+
+        if shortest[0] == -1:
+            return ""
+
+        return s[shortest[0]:shortest[1] + 1]
