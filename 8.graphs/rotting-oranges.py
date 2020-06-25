@@ -39,3 +39,41 @@ class Solution:
         if 0 <= cord[0] < rows and 0 <= cord[1] < cols:
             return True
         return False
+
+
+import collections
+
+
+class Solution2:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        rows = len(grid)
+        columns = len(grid[0]) if grid else 0
+
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        queue = collections.deque()
+        fresh = 0
+        for row in range(rows):
+            for column in range(columns):
+                if grid[row][column] == 2:
+                    queue.append(((row, column), 0))
+                elif grid[row][column] == 1:
+                    fresh += 1
+
+        latest_minute = 0
+        while queue:
+            current, minute = queue.popleft()
+            latest_minute = max(latest_minute, minute)
+            for direction in directions:
+                dx, dy = direction
+                row = current[0] + dy
+                column = current[1] + dx
+                if 0 <= row < rows and 0 <= column < columns:
+                    if grid[row][column] == 1:
+                        fresh -= 1
+                        grid[row][column] = 2
+                        queue.append(((row, column), minute + 1))
+
+        return latest_minute if fresh == 0 else -1
+
+
